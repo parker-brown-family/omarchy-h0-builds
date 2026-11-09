@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "parker.window-opacity",
+  "name": "Window opacity",
+  "version": "1.0.0",
+  "author": "parker",
+  "description": "Live sliders for Hyprland's focused and unfocused window opacity",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Widget.qml"
+  },
+  "barWidget": {
+    "displayName": "Window opacity",
+    "description": "Live sliders for Hyprland's focused and unfocused window opacity",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}

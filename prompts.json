@@ -1,0 +1,17 @@
+{
+  "written": "2026-11-09, before any run",
+  "subjects": [
+    {"id": "disk-free", "kind": "plugin", "level": "simple", "inspired_by": "brownfamilysports.disk-hud (Parker Brown)",
+     "prompt": "Build me an Omarchy shell plugin that shows how much free space is left on my main drive in the top bar, like \"182G free\". Have it update every minute or so, and turn the text red when less than 10% is left."},
+    {"id": "screen-sleep", "kind": "plugin", "level": "simple", "inspired_by": "brownfamilysports.screen-sleep (Parker Brown)",
+     "prompt": "Build me an Omarchy shell plugin that turns my screens off after 10 minutes of no input and turns them back on when I touch the mouse or keyboard. It must never suspend the machine, because I leave agents running overnight."},
+    {"id": "opacity", "kind": "plugin", "level": "moderate", "inspired_by": "brownfamilysports.opacity, a cut of wicky14's Rounded Corner Blur",
+     "prompt": "Build me an Omarchy shell plugin that puts a window opacity control in my top bar. Clicking it should open a small panel with two sliders, one for the focused window and one for unfocused windows, that change Hyprland's opacity live. Keep my settings after a restart."},
+    {"id": "drawer", "kind": "plugin", "level": "moderate", "inspired_by": "io.github.huey-holdings-llc.omarchy-drawer-redux (Corey Tyhurst)",
+     "prompt": "Build me an Omarchy shell plugin that tidies my top bar: a drawer button that, when I click it, opens a panel holding the bar widgets I've chosen to tuck away, so the bar only shows the essentials. I want to choose which widgets go in the drawer in shell.json."},
+    {"id": "harbour-fog", "kind": "theme", "level": "simple", "mode": "dark",
+     "prompt": "Make me a new Omarchy theme called Harbour Fog: cool grey-blue, low contrast, easy on the eyes late at night, with a muted teal accent. Include a background image."},
+    {"id": "paper-lantern", "kind": "theme", "level": "moderate", "mode": "light", "extras": ["btop.theme", "keyboard.rgb"],
+     "prompt": "Make me a light Omarchy theme called Paper Lantern: a warm off-white paper background, ink-black text, and a red lantern accent. Include a matching background image, and theme btop and my keyboard lighting too."}
+  ]
+}

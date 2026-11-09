@@ -1,0 +1,32 @@
+# Harbour Fog: cool grey-blue, low contrast, muted teal accent.
+mode = "dark"
+
+accent = "#6fa3a0"
+selection = "#38434e"
+muted = "#4f5b67"
+
+background = "#232a31"
+dark_background = "#1d2329"
+darker_background = "#171c21"
+lighter_background = "#2d363f"
+
+foreground = "#b3bdc7"
+dark_foreground = "#6e7a86"
+light_foreground = "#a1acb7"
+bright_foreground = "#c5ced7"
+
+red = "#c08585"
+yellow = "#c9b98c"
+orange = "#c79d80"
+green = "#8fb39b"
+cyan = "#80aead"
+blue = "#88a3bf"
+magenta = "#a897b6"
+brown = "#7d6a5b"
+
+bright_red = "#cc9797"
+bright_yellow = "#d4c69e"
+bright_green = "#a1c1ac"
+bright_cyan = "#93bcbb"
+bright_blue = "#9bb3cc"
+bright_magenta = "#b7a8c3"

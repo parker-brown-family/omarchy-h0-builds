@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "parker.drawer",
+  "name": "Drawer",
+  "version": "2.0.0",
+  "author": "parker",
+  "description": "A bar button that opens a panel holding the bar widgets listed in its \"widgets\" setting.",
+  "kinds": ["bar-widget", "service"],
+  "entryPoints": {
+    "barWidget": "DrawerWidget.qml",
+    "service": "DrawerService.qml"
+  },
+  "barWidget": {
+    "displayName": "Drawer",
+    "description": "Opens a panel holding the widgets you tuck away",
+    "category": "Layout",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": { "widgets": [] }
+  }
+}
