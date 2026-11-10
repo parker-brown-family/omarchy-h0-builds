@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "parker.window-opacity",
+  "name": "Window Opacity",
+  "version": "1.0.0",
+  "author": "parker",
+  "description": "Live sliders for focused and unfocused window opacity",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "Window Opacity",
+    "description": "Live sliders for focused and unfocused window opacity",
+    "category": "Compositor",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}

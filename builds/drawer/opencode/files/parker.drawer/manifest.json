@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "parker.drawer",
+  "name": "Drawer",
+  "version": "1.0.0",
+  "author": "parker",
+  "description": "A bar button that opens a drawer holding the bar widgets you tucked away.",
+  "kinds": [
+    "bar-widget",
+    "service"
+  ],
+  "entryPoints": {
+    "barWidget": "Widget.qml",
+    "service": "Service.qml"
+  },
+  "barWidget": {
+    "displayName": "Drawer",
+    "description": "Click to open a drawer with the widgets listed in this entry's items.",
+    "category": "Layout",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "items": [],
+      "icon": ""
+    },
+    "schema": [
+      { "key": "icon", "type": "string", "label": "Button icon", "defaultValue": "", "description": "Optional glyph for the drawer button. Empty uses a chevron that points toward the drawer." }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+# Paper Lantern — warm paper, ink, and a red lantern glow
+
+# Main background
+theme[main_bg]="#F4EEDF"
+
+# Main text color
+theme[main_fg]="#1C1815"
+
+# Title color for boxes
+theme[title]="#1C1815"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#B8322A"
+
+# Background color of selected item in processes box
+theme[selected_bg]="#EBD3C2"
+
+# Foreground color of selected item in processes box
+theme[selected_fg]="#8E241E"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#A39A88"
+
+# Color of text appearing on top of graphs, i.e uptime and current network graph scaling
+theme[graph_text]="#3A342E"
+
+# Background color of the percentage meters
+theme[meter_bg]="#E1D7C0"
+
+# Misc colors for processes box including mini cpu graphs, details memory graph and details status text
+theme[proc_misc]="#3A342E"
+
+# CPU, Memory, Network, Proc box outline colors
+theme[cpu_box]="#B8322A"
+theme[mem_box]="#7A7166"
+theme[net_box]="#7A7166"
+theme[proc_box]="#B8322A"
+
+# Box divider line and small boxes line color
+theme[div_line]="#C9BFAA"
+
+# Temperature graph color (warm ink -> amber -> lantern red)
+theme[temp_start]="#5A7530"
+theme[temp_mid]="#C25E22"
+theme[temp_end]="#B8322A"
+
+# CPU graph colors (amber -> ember -> lantern red)
+theme[cpu_start]="#B88A1E"
+theme[cpu_mid]="#C25E22"
+theme[cpu_end]="#B8322A"
+
+# Mem/Disk free meter
+theme[free_start]="#5A7530"
+theme[free_mid]="#6E8C3D"
+theme[free_end]="#2D7169"
+
+# Mem/Disk cached meter
+theme[cached_start]="#2E5684"
+theme[cached_mid]="#3F6C9E"
+theme[cached_end]="#2D7169"
+
+# Mem/Disk available meter
+theme[available_start]="#B88A1E"
+theme[available_mid]="#C25E22"
+theme[available_end]="#B8322A"
+
+# Mem/Disk used meter
+theme[used_start]="#C25E22"
+theme[used_mid]="#B8322A"
+theme[used_end]="#8E241E"
+
+# Download graph colors
+theme[download_start]="#C25E22"
+theme[download_mid]="#B8322A"
+theme[download_end]="#8E241E"
+
+# Upload graph colors
+theme[upload_start]="#7A7166"
+theme[upload_mid]="#3A342E"
+theme[upload_end]="#1C1815"
+
+# Process box color gradient for threads, mem and cpu usage
+theme[process_start]="#C25E22"
+theme[process_mid]="#B8322A"
+theme[process_end]="#8E241E"
+
+# Graph gradient colors (paper -> ink)
+theme[gradient_color_0]="#F4EEDF"
+theme[gradient_color_1]="#E8DFCA"
+theme[gradient_color_2]="#E1D7C0"
+theme[gradient_color_3]="#C9BFAA"
+theme[gradient_color_4]="#A39A88"
+theme[gradient_color_5]="#7A7166"
+theme[gradient_color_6]="#3A342E"
+theme[gradient_color_7]="#1C1815"

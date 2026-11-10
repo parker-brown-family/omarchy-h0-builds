@@ -1,0 +1,33 @@
+# Harbour Fog — cool grey-blue, low contrast, muted teal accent.
+# Tuned for late-night use: soft foreground, desaturated accents.
+mode = "dark"
+
+accent = "#6f9e9a"
+selection = "#36414b"
+muted = "#5c6873"
+
+background = "#232a31"
+dark_background = "#1d2329"
+darker_background = "#171c21"
+lighter_background = "#2b333b"
+
+foreground = "#a7b2bc"
+dark_foreground = "#6b7783"
+light_foreground = "#b7c0c8"
+bright_foreground = "#c3cbd2"
+
+red = "#b47c80"
+yellow = "#bfab85"
+orange = "#bb9179"
+green = "#8ea88b"
+cyan = "#6f9e9a"
+blue = "#7f97ad"
+magenta = "#9d8cab"
+brown = "#6a5446"
+
+bright_red = "#c38f92"
+bright_yellow = "#cbba97"
+bright_green = "#9fb79c"
+bright_cyan = "#83b0ac"
+bright_blue = "#93a9bd"
+bright_magenta = "#ae9eba"

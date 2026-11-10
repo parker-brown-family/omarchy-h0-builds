@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "parker.screen-sleep",
+  "name": "Screen Sleep",
+  "version": "1.0.0",
+  "author": "parker",
+  "description": "Turns displays off after 10 minutes without input and back on at the next keypress or mouse movement. Never suspends.",
+  "kinds": [
+    "service"
+  ],
+  "entryPoints": {
+    "service": "Service.qml"
+  }
+}

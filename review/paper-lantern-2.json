@@ -1,0 +1,70 @@
+{
+ "subject": "paper-lantern",
+ "pass": 2,
+ "letters": {
+  "h0-plain": "A",
+  "opencode": "B",
+  "claude-code": "C",
+  "h0-fitted": "D"
+ },
+ "verdict": {
+  "builds": {
+   "A": {
+    "taste": 4,
+    "taste_why": "The palette is coherent and true to the brief: #F4EEDF paper, #1E1B17 ink, #C0392B accent, with muted earthy ANSI colours that read well on a light background. The wallpaper shows two lit red lanterns on cream and is pleasant to look at daily. The darker tan vignette at the edges and the second, smaller lantern make it a bit busier and muddier than a single lantern would be.",
+    "implementation": 4,
+    "implementation_why": "colors.toml is complete with mode = \"light\". btop.theme defines every key, including a paper-to-ink gradient. keyboard.rgb is a bare hex value (C0392B) and icons.theme is Yaru-red. All files are clean and valid. The one weakness is that C0392B is fairly dim on physical RGB LEDs.",
+    "execution": 4,
+    "execution_why": "Every requested part is present: a light paper/ink/red palette, a lantern background, btop and keyboard lighting. Nothing unwanted was added. The keyboard colour is faithful to the accent, but it will glow murky rather than read as a lantern red."
+   },
+   "B": {
+    "taste": 4,
+    "taste_why": "The wallpaper is a single glowing red lantern bearing \u706f over soft, layered paper hills. It is calm, cohesive and on theme, and the character is authentic rather than a fake glyph. The palette is warm and consistent: #F4EEDF, #1C1815 ink, #B8322A accent, with a rose-tinted selection #EBD3C2. The hills slightly dim the lower part of the image, but it remains restrained.",
+    "implementation": 4,
+    "implementation_why": "colors.toml is complete and well graded. btop.theme is full, including gradient_color_0\u20137, and gives a monochrome ink ramp for upload against a red ramp for download. chromium.theme uses the valid RGB triple format. keyboard.rgb D2241A is a saturated, LED-friendly red without a '#'. No needless machinery.",
+    "execution": 5,
+    "execution_why": "It delivers everything asked: the paper/ink/red theme, a matching lantern background, a fully themed btop and a keyboard colour. The only addition is a standard chromium.theme file that fits Omarchy's conventions."
+   },
+   "C": {
+    "taste": 3,
+    "taste_why": "The base palette is good and the hills-and-lantern composition is nice. However, the wallpaper adds a red 'PL' seal stamp, which reads as branding clutter, and the lantern carries a made-up pseudo-character (a cross with bars) that looks like a mistake. Muted #b0a591 is low-contrast on #f4eedf. Making most btop boxes ink and only the process box red is a restrained choice.",
+    "implementation": 3,
+    "implementation_why": "keyboard.rgb contains '#ff3a14' with a leading '#', unlike the bare hex the format and the other builds use, so it risks failing to apply. btop.theme omits the gradient_color keys; this is tolerated but less complete. The ramp choices are odd: cached ends in green, and upload is red while download is blue/ink.",
+    "execution": 4,
+    "execution_why": "All four requested pieces are present: palette, background, btop and keyboard. The keyboard file's format may break the keyboard-lighting part, and the stamp is an unrequested addition to the background."
+   },
+   "D": {
+    "taste": 4,
+    "taste_why": "The wallpaper is the most paper-like of the four: subtle washi fibre texture and a single ribbed red lantern with ink caps and a black tassel, very restrained. The peach glow is a little broad and washes a pinkish band across the right half. The palette is coherent, with #F4EDDF paper, #1C1915 ink and #B8322A accent. Using mustard and brown for the mem/net btop boxes adds some variety while staying earthy.",
+    "implementation": 4,
+    "implementation_why": "colors.toml, btop.theme, chromium.theme and keyboard.rgb (ff3a1a) are all valid and complete. make-background.sh is clean, idiomatic bash with set -euo pipefail and a mktemp/trap cleanup. However, it is generator machinery shipped inside the theme directory, which Omarchy never uses. btop omits the gradient_color keys.",
+    "execution": 4,
+    "execution_why": "It covers everything requested with a good background and a bright LED-friendly keyboard red. It loses a little because it ships an extra regeneration script that was not asked for and does not belong in a theme package."
+   }
+  },
+  "ranking": [
+   "B",
+   "D",
+   "A",
+   "C"
+  ],
+  "ranking_why": "B is complete, clean and has the most tasteful single-lantern wallpaper with an authentic glyph. D has the best paper texture but adds an unneeded generator script and a heavy glow. A is solid but has a muddier vignette and a dim keyboard red. C is let down by the PL stamp, the fake character and the '#'-prefixed keyboard.rgb."
+ },
+ "usage": {
+  "input_tokens": 12857,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 2382,
+  "output_tokens_details": {
+   "thinking_tokens": 716
+  },
+  "service_tier": "standard",
+  "inference_geo": "global",
+  "speed": "standard"
+ },
+ "usd": 0.099068
+}

@@ -1,0 +1,94 @@
+# Paper Lantern — btop theme
+# Warm paper background, ink-black text, red lantern accent
+
+# Main background (empty = terminal default)
+theme[main_bg]="#F4EEDF"
+
+# Main text color
+theme[main_fg]="#1E1B17"
+
+# Title color for boxes
+theme[title]="#1E1B17"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#C0392B"
+
+# Background / foreground of selected item in processes box
+theme[selected_bg]="#E8D9BC"
+theme[selected_fg]="#B83227"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#A69C89"
+
+# Color of text appearing on top of graphs
+theme[graph_text]="#3A352E"
+
+# Background color of the percentage meters
+theme[meter_bg]="#E6DDC8"
+
+# Misc colors for processes box
+theme[proc_misc]="#3A352E"
+
+# CPU, Memory, Network, Proc box outline colors
+theme[cpu_box]="#C0392B"
+theme[mem_box]="#7A7163"
+theme[net_box]="#7A7163"
+theme[proc_box]="#1E1B17"
+
+# Box divider line and small boxes line color
+theme[div_line]="#C9BEA6"
+
+# Temperature graph (cool ink -> amber -> lantern red)
+theme[temp_start]="#5A7329"
+theme[temp_mid]="#BA8A1C"
+theme[temp_end]="#B83227"
+
+# CPU graph (ember glow: amber -> orange -> red)
+theme[cpu_start]="#BA8A1C"
+theme[cpu_mid]="#BF5B1D"
+theme[cpu_end]="#B83227"
+
+# Mem/Disk free meter
+theme[free_start]="#5A7329"
+theme[free_mid]="#6E8A36"
+theme[free_end]="#2B7570"
+
+# Mem/Disk cached meter
+theme[cached_start]="#2E5785"
+theme[cached_mid]="#3E6CA0"
+theme[cached_end]="#2B7570"
+
+# Mem/Disk available meter
+theme[available_start]="#BA8A1C"
+theme[available_mid]="#BF5B1D"
+theme[available_end]="#B83227"
+
+# Mem/Disk used meter
+theme[used_start]="#D2443A"
+theme[used_mid]="#B83227"
+theme[used_end]="#7E1F18"
+
+# Download graph
+theme[download_start]="#BF5B1D"
+theme[download_mid]="#C0392B"
+theme[download_end]="#7E1F18"
+
+# Upload graph
+theme[upload_start]="#3A352E"
+theme[upload_mid]="#2E5785"
+theme[upload_end]="#2B7570"
+
+# Process box gradient for threads, mem and cpu usage
+theme[process_start]="#BA8A1C"
+theme[process_mid]="#BF5B1D"
+theme[process_end]="#B83227"
+
+# Graph gradient colors (paper -> ink)
+theme[gradient_color_0]="#F4EEDF"
+theme[gradient_color_1]="#E6DDC8"
+theme[gradient_color_2]="#E8D9BC"
+theme[gradient_color_3]="#A69C89"
+theme[gradient_color_4]="#7A7163"
+theme[gradient_color_5]="#3A352E"
+theme[gradient_color_6]="#1E1B17"
+theme[gradient_color_7]="#110F0D"

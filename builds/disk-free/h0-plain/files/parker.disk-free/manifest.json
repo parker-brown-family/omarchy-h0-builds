@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "parker.disk-free",
+  "name": "Disk free",
+  "version": "1.0.0",
+  "author": "parker",
+  "description": "Free space left on the main drive, red when it runs low",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "DiskFree.qml"
+  },
+  "barWidget": {
+    "displayName": "Disk free",
+    "description": "Free space left on the main drive, red when it runs low",
+    "category": "System",
+    "allowMultiple": true,
+    "defaultSection": "right",
+    "defaults": {
+      "path": "/",
+      "intervalSec": 60,
+      "lowPercent": 10
+    },
+    "schema": [
+      { "key": "path", "type": "path", "label": "Mount point", "defaultValue": "/" },
+      { "key": "intervalSec", "type": "integer", "label": "Refresh interval (seconds)", "min": 10, "max": 3600, "step": 10, "defaultValue": 60 },
+      { "key": "lowPercent", "type": "integer", "label": "Turn red below (% free)", "min": 1, "max": 50, "step": 1, "defaultValue": 10 }
+    ]
+  }
+}

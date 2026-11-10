@@ -1,0 +1,70 @@
+{
+ "subject": "opacity",
+ "pass": 2,
+ "letters": {
+  "claude-code": "A",
+  "opencode": "B",
+  "h0-fitted": "C",
+  "h0-plain": "D"
+ },
+ "verdict": {
+  "builds": {
+   "A": {
+    "taste": 3,
+    "taste_why": "Restrained: a single 'WINDOW OPACITY' PanelSectionHeader and two rows, a plain 'Window opacity' tooltip, and no extras. The keyboard cursor is a homemade '\u203a ' prefix with bold text rather than the shell's CursorSurface highlight, so it looks slightly off-convention. Sliders start at 100% instead of showing Hyprland's actual values.",
+    "implementation": 4,
+    "implementation_why": "A clean single hyprctl Process with pending-value coalescing applies the values via `hyprctl -q eval` Lua. Settings are stored inline with updateEntryInline and re-applied on configreloaded. It deliberately applies nothing until a value has been saved, which is good. Weaknesses: the 1s echoGuard can swallow a real reload that lands right after a drag, and it never reads current Hyprland values, so the initial slider positions can be wrong.",
+    "execution": 4,
+    "execution_why": "Delivers everything asked: a bar button, a popup with Focused and Unfocused sliders, live changes on drag, and persistence in shell.json re-applied on start and reload. The only gap is the misleading initial slider state before the first save."
+   },
+   "B": {
+    "taste": 4,
+    "taste_why": "Feels native: an icon-and-title hero, PanelSeparator, FOCUSED/UNFOCUSED section headers with dimmed percent captions, and CursorSurface outlines for keyboard selection. The tooltip shows both percentages. Until something is saved it adopts Hyprland's current values instead of imposing 100%. No unrequested features.",
+    "implementation": 4,
+    "implementation_why": "Reads decoration opacity with `hyprctl -j getoption` before any save. On configreloaded it reconciles: it re-applies only when Hyprland disagrees, which avoids loops more robustly than a time guard. A 30ms timer coalesces drags, writes are debounced, and a pending save is flushed when the panel closes. It uses execDetached per apply, which is slightly less controlled than a single Process, and has a bit more machinery than strictly needed.",
+    "execution": 5,
+    "execution_why": "All parts done: the bar icon opens a panel with two sliders, opacity changes live while dragging, settings persist in the shell.json entry, and they are re-applied at shell start and after any Hyprland reload."
+   },
+   "C": {
+    "taste": 3,
+    "taste_why": "Uses PanelHero, CursorSurface and section headers well. It adds an unrequested Reset button, a '100% = OMARCHY DEFAULT' meta line, and scroll-to-change on the bar icon, which can silently alter opacity when the user scrolls over the bar. Component.onCompleted always applies 100%/100%, overriding whatever opacity the user's Hyprland config already sets.",
+    "implementation": 3,
+    "implementation_why": "The bash -c call passes values safely as $1/$2 and falls back to `hyprctl keyword`. Process coalescing and the debounced write are fine. However, it forces values on startup even with nothing saved, the 1.5s time-based echo guard is crude, and the bash wrapper plus fallback is extra machinery.",
+    "execution": 4,
+    "execution_why": "Sliders, live apply, persistence in shell.json and re-apply on reload all work. The extras (wheel nudge, Reset) earn nothing, and the forced startup override is unwanted."
+   },
+   "D": {
+    "taste": 3,
+    "taste_why": "A well-formed custom hero with an 'APPLIED LIVE \u00b7 SAVED' caption, CursorSurface rows and an informative tooltip. It also adds an unrequested scroll-wheel nudge on the bar icon. The caption promises persistence that does not actually happen.",
+    "implementation": 2,
+    "implementation_why": "It writes a state file under $XDG_STATE_HOME, and its comments say ~/.config/hypr/window-opacity.lua reads that file, but no such Lua file is shipped or installed. Nothing re-applies the saved values on shell start or on configreloaded; refresh() only reads values back. It depends on jq in a bash pipeline and uses `hyprctl keyword` rather than the eval path. The atomic tmp-then-mv write is careful, but it serves a dead end.",
+    "execution": 2,
+    "execution_why": "The live sliders work, but 'keep my settings after a restart' fails. After a restart, Hyprland comes up with the config defaults, readProc prefers those live values over the saved file, and nothing ever applies the saved numbers."
+   }
+  },
+  "ranking": [
+   "B",
+   "A",
+   "C",
+   "D"
+  ],
+  "ranking_why": "B fully meets the request with native-looking UI and the most robust reload reconciliation. A is equally complete and simpler but less polished and starts its sliders at the wrong values. C works but adds unwanted extras and forces 100% opacity at startup. D's persistence relies on a Lua hook it never ships, so settings are lost on restart."
+ },
+ "usage": {
+  "input_tokens": 16187,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 2443,
+  "output_tokens_details": {
+   "thinking_tokens": 774
+  },
+  "service_tier": "standard",
+  "inference_geo": "global",
+  "speed": "standard"
+ },
+ "usd": 0.113608
+}

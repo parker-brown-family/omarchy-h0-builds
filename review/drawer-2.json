@@ -1,0 +1,70 @@
+{
+ "subject": "drawer",
+ "pass": 2,
+ "letters": {
+  "h0-fitted": "A",
+  "claude-code": "B",
+  "opencode": "C",
+  "h0-plain": "D"
+ },
+ "verdict": {
+  "builds": {
+   "A": {
+    "taste": 3,
+    "taste_why": "The chevron in Drawer.qml points toward the panel for each bar position. The card uses Color.popups.background, BorderSurface and Style.cornerRadius, so it reads as an Omarchy popup. But the drawer closes itself 900 ms after the pointer leaves, and a click outside does nothing. That auto-close is surprising for a click-opened panel. Tucked widgets' tooltips go to host.showTooltip, and the bar only draws tooltips on its own window, so they will likely never appear.",
+    "implementation": 3,
+    "implementation_why": "The NestedBar proxy cleanly forwards the drawer's own bar facade, and requestPopout is wrapped with begin/endNestedPopout so a nested panel does not close the drawer. Duplicate or unknown ids get a single console warning each. Weak points: the catalogue comes from a bash `find` over manifests and loads widgets by URL, bypassing the shell's registry. The popout ownership walk uses depth-limited parent/anchorItem traversal. Widgets are injected twice (onLoaded plus callLater). The layer-shell strip with a mask works but is more machinery than a PopupWindow.",
+    "execution": 4,
+    "execution_why": "Delivers a drawer button whose `items` in shell.json can be plain ids or objects carrying the widget's own settings. Tucked widgets render in a card and can open their own panels. However, the manifest schema does not expose `items` in the settings UI. The user must also remove widgets from bar.layout by hand; a warning is logged if they don't."
+   },
+   "B": {
+    "taste": 4,
+    "taste_why": "The panel is a PopupWindow hung off the button the same way PopupCard places bar popouts. It is drawn in the bar background with the popups border, uses a fade, and has a muted 'Drawer is empty' label. It closes on an outside click through HyprlandFocusGrab, and it draws its own tooltip for tucked widgets. The default ellipsis glyph \\uf141 is a familiar 'more' idiom. The manifest offers `items` as a searchable multiselect of the built-in widgets, which suits Omarchy's settings UI.",
+    "implementation": 4,
+    "implementation_why": "Each slot gets a real PluginBarApi that forwards to the drawer's facade, so tucked widgets get the same scoped access a third-party widget gets on the bar. The model is keyed by a joined string, and settingsJson is compared as text, which avoids needless rebuilds. Pure helpers live in DrawerModel.js and reject entry points containing `..`. Grabbing and immediately releasing the bar popout slot is a neat way to close other panels. Minor issues: the scan depends on jq and on $OMARCHY_PATH with no fallback, and the multiselect options are a hardcoded list that will drift.",
+    "execution": 4,
+    "execution_why": "Covers every part of the request: a drawer button, a panel holding the chosen widgets, and selection through `items` in shell.json, including per-widget inline settings. IPC opening of tucked widgets is handled. The README honestly lists the limits, such as media controls needing the trusted bar."
+   },
+   "C": {
+    "taste": 4,
+    "taste_why": "The Material chevron rotates 180\u00b0 when the drawer opens. Escape closes it. The card shows the accent open-panel mark under whichever tucked widget has its panel up, matching bar conventions. Widget settings such as a cycled clock format are written back into `items`. Two choices are heavier than needed: invisible full-screen dismiss windows on every monitor, and Exclusive keyboard focus on an Overlay layer surface. Middle-click also toggles the drawer.",
+    "implementation": 3,
+    "implementation_why": "Getting barWidgetRegistry through a companion service is a clever and correct use of the plugin API, avoiding a filesystem scan. DrawerBar.qml is a careful scoped facade with its own popout coordinator. The cost is a lot of machinery: a 250 ms polling timer to find the service, focus-priming timers, a 5 s warning timer per slot, panel-switch logic, and an IPC bridge. computeHostedEntries also silently drops widgets that are still in bar.layout.",
+    "execution": 4,
+    "execution_why": "Delivers the button, the panel and `items`-driven content with inline settings. It goes further with togglePanel IPC and settings write-back, which are useful rather than harmful. One caveat is buried in the README: a third-party widget that lives only in the drawer must also be listed under `plugins` to stay loaded."
+   },
+   "D": {
+    "taste": 2,
+    "taste_why": "To get a drawer, the user has to replace the whole bar with `bar.id: \"parker.drawer\"`, which wraps the stock Bar.qml. If that bar fails to load, the plugin rewrites shell.json and fires notify-send. That is surprising, invasive behaviour for a request about tidying the bar. The README admits tooltips do not show for tucked widgets. Tucked entries stay in bar.layout but are hidden, which is a confusing model.",
+    "implementation": 2,
+    "implementation_why": "The plugin depends on stock bar internals (registerModuleSlot, pluginBarApiFor, barWidgetRegistry). It also re-labels its own button as firstParty in a forged registry so it receives the trusted bar object, which escalates trust. On load failure it mutates the user's config. The test reads ../../../shell.json, meaning the user's live file. DrawerModel.js itself is clean and tested, but the overall architecture is fragile.",
+    "execution": 3,
+    "execution_why": "It does provide a drawer button with `items` chosen in shell.json, and IPC summon routes to tucked widgets. But reaching it requires an unrequested bar replacement, and hover tooltips are lost. The extra bar-wrapping layer is unwanted scope."
+   }
+  },
+  "ranking": [
+   "B",
+   "C",
+   "A",
+   "D"
+  ],
+  "ranking_why": "B is a clean, conventional popup that uses PluginBarApi properly, dismisses on an outside click, and exposes `items` in the settings UI. C is the most thorough and uses the registry through a service, but it carries heavy machinery: full-screen dismiss layers, focus timers and polling. A works, but its pointer-leave auto-close, missing outside-click dismissal and likely-broken tooltips make it weaker. D hijacks the whole bar, forges first-party trust, and edits shell.json on failure."
+ },
+ "usage": {
+  "input_tokens": 44615,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 3455,
+  "output_tokens_details": {
+   "thinking_tokens": 1289
+  },
+  "service_tier": "standard",
+  "inference_geo": "global",
+  "speed": "standard"
+ },
+ "usd": 0.24756
+}

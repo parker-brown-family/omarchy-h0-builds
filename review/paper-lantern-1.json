@@ -1,0 +1,70 @@
+{
+ "subject": "paper-lantern",
+ "pass": 1,
+ "letters": {
+  "h0-fitted": "A",
+  "opencode": "B",
+  "h0-plain": "C",
+  "claude-code": "D"
+ },
+ "verdict": {
+  "builds": {
+   "A": {
+    "taste": 4,
+    "taste_why": "The wallpaper is restrained: a single ribbed red lantern on fibrous washi-textured paper with a soft warm glow, easy to live with every day. The palette is coherent: #F4EDDF paper, #1C1915 ink and #B8322A lantern red. lighter_background (#FAF6EE) is actually lighter than the background, as the name implies. The lantern is a bit flat and clip-art, and keyboard.rgb's ff3a1a is more orange than the accent.",
+    "implementation": 4,
+    "implementation_why": "colors.toml is complete and every btop key is a real btop key. chromium.theme and icons.theme (Yaru-red) are valid. make-background.sh is clean, uses set -euo pipefail and a trap-cleaned temp directory. However, shipping a generator script inside the theme folder is extra machinery the theme does not need at runtime.",
+    "execution": 5,
+    "execution_why": "Every part of the request is covered: the light palette, a matching background, btop.theme and keyboard.rgb, plus Chromium and icon theming."
+   },
+   "B": {
+    "taste": 4,
+    "taste_why": "The wallpaper is the most polished composition: a glowing lantern bearing \u706f, misty paper-toned hills and a soft radial light. The palette is coherent and true to the brief, and the btop box colours (red CPU and proc boxes, grey others) are tasteful. The kanji and hills add a little more decoration than strictly needed. lighter_background (#E8DFCA) is darker than the background.",
+    "implementation": 3,
+    "implementation_why": "The colors.toml, chromium.theme, icons and keyboard files are valid. btop.theme, however, adds theme[gradient_color_0..7] keys that btop does not recognise, so those lines are dead. The inverted lighter_background also misleads any template that uses it for raised surfaces.",
+    "execution": 5,
+    "execution_why": "Every part of the request is delivered: the palette, a matching background, btop and keyboard.rgb (D2241A), plus Chromium and icons."
+   },
+   "C": {
+    "taste": 3,
+    "taste_why": "Two lanterns with glossy white highlight blobs and a heavy tan vignette read more like stock clip-art than paper. The edges go noticeably brown rather than off-white. The palette itself is fine, and the keyboard colour C0392B sensibly matches the accent.",
+    "implementation": 3,
+    "implementation_why": "The colors.toml and btop.theme are mostly valid, but btop.theme again carries the bogus gradient_color_N keys. lighter_background (#E6DDC8) is darker than the background. There is no chromium.theme, so the browser chrome will not match.",
+    "execution": 4,
+    "execution_why": "The palette, background, btop and keyboard are all present. Chromium is not themed, which Omarchy themes normally include."
+   },
+   "D": {
+    "taste": 2,
+    "taste_why": "The wallpaper adds gimmicks: a made-up pseudo-character on the lantern and a red 'PL' monogram seal in the corner, which a user would be staring at daily. The btop and colour palette are coherent, though making only the proc box red is a nice touch.",
+    "implementation": 3,
+    "implementation_why": "btop.theme is compact and uses only valid keys, and colors.toml is complete. keyboard.rgb is written as '#ff3a14', a different format from the bare hex the other builds use, so it risks not parsing. lighter_background is inverted, and there is no chromium.theme.",
+    "execution": 4,
+    "execution_why": "The palette, background, btop and keyboard are all provided. Chromium is missing, and the extra seal branding on the wallpaper was not asked for."
+   }
+  },
+  "ranking": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "ranking_why": "A has the cleanest, most liveable paper-textured wallpaper and fully valid files, including a correctly ordered lighter_background. B's wallpaper is lovely but its btop file carries invalid gradient keys. C is busier, with a brownish wallpaper and no Chromium theme. D's monogram seal and fake glyph are gimmicky, and its keyboard format is questionable."
+ },
+ "usage": {
+  "input_tokens": 12857,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 1971,
+  "output_tokens_details": {
+   "thinking_tokens": 578
+  },
+  "service_tier": "standard",
+  "inference_geo": "global",
+  "speed": "standard"
+ },
+ "usd": 0.090848
+}

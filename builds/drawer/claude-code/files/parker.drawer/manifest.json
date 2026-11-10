@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "id": "parker.drawer",
+  "name": "Drawer",
+  "version": "2.0.0",
+  "author": "parker",
+  "description": "A bar button that opens a panel holding the widgets you tuck away",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Drawer.qml"
+  },
+  "barWidget": {
+    "displayName": "Drawer",
+    "description": "A bar button that opens a panel holding the widgets you tuck away",
+    "category": "Layout",
+    "allowMultiple": true,
+    "defaultSection": "right",
+    "defaults": {
+      "items": []
+    },
+    "schema": [
+      {
+        "key": "items",
+        "type": "multiselect",
+        "label": "Widgets",
+        "description": "Widgets shown inside the drawer panel, in this order. Take a widget off the bar when you add it here.",
+        "noSelectionText": "Empty drawer",
+        "placeholderText": "Search widgets...",
+        "emptyText": "No widgets",
+        "options": [
+          {
+            "value": "omarchy.active-window",
+            "label": "Active window",
+            "description": "Title of the focused window"
+          },
+          {
+            "value": "omarchy.agents",
+            "label": "Agents",
+            "description": "One bar icon and one panel: rate-limit meters with pace, today, the last week, and the all-time model breakdown for every subscription."
+          },
+          {
+            "value": "omarchy.audio",
+            "label": "Audio",
+            "description": "Volume slider, output picker, per-app mixer"
+          },
+          {
+            "value": "omarchy.bluetooth",
+            "label": "Bluetooth",
+            "description": "Bluetooth device list with connect/disconnect"
+          },
+          {
+            "value": "omarchy.clock",
+            "label": "Clock",
+            "description": "Date/time label with a calendar popup"
+          },
+          {
+            "value": "omarchy.monitor",
+            "label": "Display",
+            "description": "Brightness slider and laptop display controls"
+          },
+          {
+            "value": "omarchy.dropbox",
+            "label": "Dropbox",
+            "description": "Log in to Dropbox, view storage usage, and open recent synced files."
+          },
+          {
+            "value": "omarchy.indicators",
+            "label": "Indicators",
+            "description": "Manual state indicators"
+          },
+          {
+            "value": "omarchy.keyboard-layout",
+            "label": "Keyboard layout",
+            "description": "Current xkb layout, click cycles"
+          },
+          {
+            "value": "omarchy.media",
+            "label": "Media",
+            "description": "MPRIS now-playing with playback controls"
+          },
+          {
+            "value": "omarchy.microphone",
+            "label": "Microphone",
+            "description": "Mic input state and mute toggle"
+          },
+          {
+            "value": "omarchy.network",
+            "label": "Network",
+            "description": "Wi-Fi list and connection state"
+          },
+          {
+            "value": "omarchy.menu",
+            "label": "Omarchy menu",
+            "description": "Launches the Omarchy menu"
+          },
+          {
+            "value": "omarchy.system-update",
+            "label": "Omarchy update",
+            "description": "Indicates available Omarchy updates"
+          },
+          {
+            "value": "omarchy.power",
+            "label": "Power",
+            "description": "Battery, power profile, and system stats"
+          },
+          {
+            "value": "omarchy.tray",
+            "label": "System tray",
+            "description": "Status notifier items"
+          },
+          {
+            "value": "omarchy.tailscale",
+            "label": "Tailscale",
+            "description": "Toggle Tailscale, switch connections, browse machines, and copy machine IPs or names."
+          },
+          {
+            "value": "omarchy.weather",
+            "label": "Weather",
+            "description": "Weather pill with detail popup"
+          },
+          {
+            "value": "omarchy.workspaces",
+            "label": "Workspaces",
+            "description": "Workspace number indicators"
+          }
+        ]
+      },
+      {
+        "key": "icon",
+        "type": "string",
+        "label": "Icon",
+        "description": "Nerd Font glyph for the drawer button.",
+        "defaultValue": ""
+      },
+      {
+        "key": "tooltip",
+        "type": "string",
+        "label": "Tooltip",
+        "description": "Tooltip for the drawer button.",
+        "defaultValue": "Drawer"
+      }
+    ]
+  }
+}

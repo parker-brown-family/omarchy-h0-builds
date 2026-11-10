@@ -1,0 +1,32 @@
+# Paper Lantern: warm washi paper, sumi ink, red lantern glow
+mode = "light"
+
+accent = "#B8322A"
+selection = "#E6D5BC"
+muted = "#B3A792"
+
+background = "#F4EDDF"
+dark_background = "#ECE3D1"
+darker_background = "#E1D6C1"
+lighter_background = "#FAF6EE"
+
+foreground = "#1C1915"
+dark_foreground = "#857A6B"
+light_foreground = "#3D362E"
+bright_foreground = "#0D0B09"
+
+red = "#B8322A"
+yellow = "#A87A12"
+orange = "#C25E1E"
+green = "#5C7A2C"
+cyan = "#2D7C76"
+blue = "#2F5A86"
+magenta = "#94396A"
+brown = "#6B4423"
+
+bright_red = "#D2433A"
+bright_yellow = "#C2921E"
+bright_green = "#6F8F36"
+bright_cyan = "#3A948D"
+bright_blue = "#3E6FA0"
+bright_magenta = "#AD4A80"

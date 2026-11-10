@@ -1,0 +1,70 @@
+{
+ "subject": "disk-free",
+ "pass": 1,
+ "letters": {
+  "claude-code": "A",
+  "h0-fitted": "B",
+  "h0-plain": "C",
+  "opencode": "D"
+ },
+ "verdict": {
+  "builds": {
+   "A": {
+    "taste": 3,
+    "taste_why": "Shows a compact \"182G free\" (size only when the bar is vertical). It uses caption font and a 6px margin, and hides itself until the first df result arrives. Sizes are rounded up like `df -h`, which is familiar. Clicking opens btop through `omarchy-launch-or-focus-tui`. That fits Omarchy but is unrequested behaviour hidden behind a disk label. Low space is shown with `active: root.low`, i.e. the button's active styling, which may be the theme accent rather than a true red.",
+    "implementation": 3,
+    "implementation_why": "Clean, idiomatic BarWidget with a Process, a StdioCollector, a Timer with triggeredOnStart, and a running guard in refresh(). Weaknesses: the parsed fields are not checked with NaN/isFinite. A bad `interval` setting gives `Math.max(5, NaN)` = NaN, which breaks the Timer. Manifest schema types are plain `number` with no bounds.",
+    "execution": 4,
+    "execution_why": "Shows free space on / as \"NNNG free\", refreshes every 60s and flags under 10% free. The red is delegated to WidgetButton `active`, which may not actually be red. The click-to-btop is an extra nobody asked for."
+   },
+   "B": {
+    "taste": 3,
+    "taste_why": "Same \"182G free\" text, with a clear tooltip showing percent to one decimal. Clicking only refreshes, which is restrained. It keeps the default WidgetButton font and padding. There is no `visible` guard, so an empty button may sit in the bar before the first df run. Sizes are floored, which slightly understates free space compared with df.",
+    "implementation": 4,
+    "implementation_why": "Parsing is split into a readable parse() with an isNaN check. The interval has a `|| 60` fallback against bad settings. displayText and the tooltip are guarded while there is no data yet. A header comment explains the urgent-colour intent. There is a small redundant check (`availBytes >= 0` and `sizeBytes > 0` both used for low).",
+    "execution": 4,
+    "execution_why": "Meets every part of the request: free space on /, a \"G free\" label, 60s refresh and a 10% threshold. There are no unwanted extras. As in all four builds, the red relies on WidgetButton `active` styling."
+   },
+   "C": {
+    "taste": 4,
+    "taste_why": "Compact caption-sized label that stays hidden until it has data. It formats sensibly: whole G above 10G, one decimal under 10G, M under 1G, T above 1T. The tooltip gives % free. Click just refreshes, so there are no surprises. The settings have sensible bounds (10\u20133600s, 1\u201350%).",
+    "implementation": 4,
+    "implementation_why": "The most defensive of the four. It has a single hasData flag and isFinite/size>0 checks. It passes `--` before the path so a path cannot be read as a df option, and it uses `-P` for stable POSIX columns. It falls back on NaN for both settings and has a clear comment on the df output format. One risk: schema `type: \"path\"` may not be a supported schema type.",
+    "execution": 4,
+    "execution_why": "Does exactly what was asked: a \"182G free\" style label for /, a 60s refresh and a 10% low threshold, with nothing extra. The red is again via `active`."
+   },
+   "D": {
+    "taste": 2,
+    "taste_why": "formatSize always floors to whole GiB, so a nearly full disk shows \"0G free\". That is exactly the moment the widget matters. Left click launches btop and only middle click refreshes, which is surprising and unrequested.",
+    "implementation": 3,
+    "implementation_why": "Parsing is sound, with isFinite and size>0 checks, and the manifest schema has bounds. The interval setting has no NaN fallback. The formatter ignores the sub-1G and sub-10G cases. Using totals initialised to 0 as a 'no data' flag works but reads less clearly.",
+    "execution": 3,
+    "execution_why": "Covers the label, the minute refresh and the 10% threshold. However, the display degrades badly when space is low, the case the request cares most about. It also adds unrequested click behaviour."
+   }
+  },
+  "ranking": [
+   "C",
+   "B",
+   "A",
+   "D"
+  ],
+  "ranking_why": "C is the most robust and restrained, with good formatting at every size and safe df invocation. B is clean and does exactly what was asked, but lacks a hide-until-loaded guard. A is solid but adds a btop launch and lacks NaN guards. D floors near-empty disks to \"0G\" and changes the click behaviour unasked."
+ },
+ "usage": {
+  "input_tokens": 6705,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 2125,
+  "output_tokens_details": {
+   "thinking_tokens": 579
+  },
+  "service_tier": "standard",
+  "inference_geo": "global",
+  "speed": "standard"
+ },
+ "usd": 0.06932
+}

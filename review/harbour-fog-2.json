@@ -1,0 +1,70 @@
+{
+ "subject": "harbour-fog",
+ "pass": 2,
+ "letters": {
+  "opencode": "A",
+  "h0-plain": "B",
+  "h0-fitted": "C",
+  "claude-code": "D"
+ },
+ "verdict": {
+  "builds": {
+   "A": {
+    "taste": 4,
+    "taste_why": "The background is an atmospheric foggy harbour: a pier with two teal-glowing lamps and their reflections, a sailboat, faint cranes and a hazy moon. It sits well in grey-blue, though it holds more objects than a calm daily wallpaper needs. The palette is coherent and low contrast. Foreground #b3bdc7 on #1f252c is soft, the accent #6fa3a0 is a properly muted teal, and the ANSI colours are desaturated to match. Yaru-prussiangreen-dark fits the teal accent.",
+    "implementation": 4,
+    "implementation_why": "colors.toml is complete and valid with every key Omarchy's templates expect, and icons.theme names a real Yaru dark variant. There is no needless extra machinery. Hyprland borders fall back to the templated defaults, which is fine.",
+    "execution": 5,
+    "execution_why": "Everything asked for is here: a theme named Harbour Fog, a cool grey-blue low-contrast palette, a muted teal accent and a fitting background image, with nothing unwanted."
+   },
+   "B": {
+    "taste": 2,
+    "taste_why": "The background is smeary and muddy, with heavy blur streaks across the whole sky and water. A reddish-brown railing in the bottom-left foreground clashes with the cool brief and looks like an artefact. The lighthouse beam is nice but lost. The palette itself is fine and gentle (foreground #a7b2bc on #232a31). The teal-to-blue gradient active border in hyprland.lua is a small flourish that is tolerable. Yaru-prussiangreen is the non-dark variant on a dark theme.",
+    "implementation": 3,
+    "implementation_why": "colors.toml is valid and complete. hyprland.lua uses proper rgba() values and a gradient table for both general and group borders, which is correct. Choosing the light Yaru-prussiangreen icon theme for mode = \"dark\" is a mismatch. The cyan entry duplicates the accent exactly, which is acceptable.",
+    "execution": 4,
+    "execution_why": "It delivers all requested parts: name, palette, teal accent and background. The background only weakly reads as 'easy on the eyes', because its blur noise is visually busy."
+   },
+   "C": {
+    "taste": 5,
+    "taste_why": "The background is the most restful of the four: a flat misty sky, soft hills, a tiny lighthouse with a teal light and a long teal reflection, and a dark jetty at the left. It is quiet and well balanced for daily late-night use. The palette has a muted #4b5663, a soft foreground #a7b1bc on #232930, and dusty ANSI colours that are truly low contrast. Yaru-sage is a reasonable muted-green icon set, though slightly less teal than prussiangreen.",
+    "implementation": 4,
+    "implementation_why": "colors.toml is complete and valid. make-background.sh is clean and safe: set -euo pipefail, a mktemp dir cleaned by trap, and ImageMagick layering that makes the image reproducible. It is extra machinery shipped in the theme directory, though. light_foreground (#8a95a1) is darker than foreground, which inverts the expected ordering.",
+    "execution": 5,
+    "execution_why": "It meets every part of the brief: Harbour Fog naming, cool grey-blue low contrast, a muted teal accent and a background image. The generator script is harmless extra."
+   },
+   "D": {
+    "taste": 4,
+    "taste_why": "The background is very calm and minimal: a misty horizon, a thin pier with a single teal light and its reflection. It is pleasant but quite empty, and there is a visible dark vignette or blotch in the lower left. The palette is coherent and soft, and the accent #6f9e9a is well chosen. Yaru-prussiangreen-dark is a good icon pick.",
+    "implementation": 3,
+    "implementation_why": "colors.toml is valid and complete. hyprland.lua sets the active border as a bare \"#6f9e9a\" string, while the inactive border uses rgba(); that format may not be accepted by Hyprland's colour parser. The README is a harmless but unnecessary extra.",
+    "execution": 4,
+    "execution_why": "All requested parts are present. The README adds nothing requested, and the possibly invalid border colour risks the window chrome not matching."
+   }
+  },
+  "ranking": [
+   "C",
+   "A",
+   "D",
+   "B"
+  ],
+  "ranking_why": "C pairs a disciplined low-contrast palette with the calmest, most liveable fog-harbour background. A is equally complete with an attractive but busier scene. D is calm but sparse and has a questionable border colour string. B's palette is fine, but its smeared background with a clashing brown railing and its light icon theme on a dark theme let it down."
+ },
+ "usage": {
+  "input_tokens": 9105,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 2299,
+  "output_tokens_details": {
+   "thinking_tokens": 710
+  },
+  "service_tier": "standard",
+  "inference_geo": "global",
+  "speed": "standard"
+ },
+ "usd": 0.0824
+}

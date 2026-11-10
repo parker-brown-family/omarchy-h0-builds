@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "parker.drawer",
+  "name": "Bar drawer",
+  "version": "1.0.0",
+  "author": "parker",
+  "description": "The stock Omarchy bar plus a drawer button that holds the widgets you tuck away",
+  "kinds": [
+    "bar",
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "bar": "DrawerBar.qml",
+    "barWidget": "DrawerButton.qml"
+  },
+  "barWidget": {
+    "displayName": "Drawer",
+    "description": "Click to open a panel holding the widgets listed in items",
+    "category": "Layout",
+    "allowMultiple": true,
+    "defaultSection": "right",
+    "schema": [
+      {
+        "key": "items",
+        "type": "string-list",
+        "label": "Tucked widgets",
+        "description": "Widget ids to move off the bar and into this drawer, in display order. Keep each widget's own entry in bar.layout; it holds the widget's settings."
+      },
+      { "key": "icon", "type": "string", "label": "Icon", "defaultValue": "\uf078" },
+      { "key": "iconOpen", "type": "string", "label": "Icon while open", "defaultValue": "\uf077" },
+      { "key": "tooltip", "type": "string", "label": "Tooltip", "defaultValue": "More widgets" }
+    ]
+  }
+}

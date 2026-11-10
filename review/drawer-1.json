@@ -1,0 +1,70 @@
+{
+ "subject": "drawer",
+ "pass": 1,
+ "letters": {
+  "claude-code": "A",
+  "h0-plain": "B",
+  "h0-fitted": "C",
+  "opencode": "D"
+ },
+ "verdict": {
+  "builds": {
+   "A": {
+    "taste": 4,
+    "taste_why": "Fits the bar well. The ellipsis glyph (\\uf141) on a BarIconButton has an active state, and the panel is a BorderSurface in the bar background with the popups border spec and a 140ms fade. It draws its own tooltips for tucked widgets and shows plain 'Drawer is empty' / 'Nothing to show' text. Defaults are restrained: icon, tooltip and items, with nothing gimmicky.",
+    "implementation": 4,
+    "implementation_why": "Everything sits in one Drawer.qml plus a pure DrawerModel.js. Widgets are found by a find+jq manifest scan, which depends on jq, and parseCatalogue drops '..' entry points. Each slot gets a PluginBarApi facade whose underscore internals (_requestPopout, _moduleWidgets) tie it to private API. bar.requestPopout followed at once by releasePopout is a hack to close other panels. The HyprlandFocusGrab steps aside while a tucked widget's popout is open, and settings are string-keyed so the Repeater does not rebuild needlessly. Solid overall, with a few brittle couplings.",
+    "execution": 5,
+    "execution_why": "Delivers every part: a drawer button, a panel holding the tucked widgets, and items set in shell.json on the drawer's layout entry. Per-item inline settings are supported, and the manifest offers items as a multiselect in the settings UI. The README explains clearly how to tuck a widget and what the limits are."
+   },
+   "B": {
+    "taste": 2,
+    "taste_why": "The user has to replace the whole bar by setting bar.id to 'parker.drawer' just to get a button. That is surprising and heavy for a tidy-up widget. The chevron icons and accent underline mark are fine, but tooltips for tucked widgets are missing. The rule that tucked widgets must stay in bar.layout yet are hidden from it is counter-intuitive.",
+    "implementation": 2,
+    "implementation_why": "DrawerBar.qml wraps the stock Bar.qml and reaches into its internals: registerModuleSlot, pluginBarApiFor, and a fake registry flagged firstParty to obtain trusted bar access. It also registers proxy slots in the bar. On load error it calls mutateShellConfig, rewriting the user's shell.json. test/ModelTest.qml reads ../../../shell.json, the real user config. The pure model is clean, but the architecture is fragile and over-privileged.",
+    "execution": 3,
+    "execution_why": "It works: items in shell.json, a drawer panel, and tucked widgets filtered off the visible bar. However, it requires swapping the bar implementation, which goes beyond what was asked and is unwanted. The schema uses a plain string-list for items."
+   },
+   "C": {
+    "taste": 3,
+    "taste_why": "The direction-aware chevron, the popups-background card and the duplicate-id warnings are thoughtful. But autoClose is on by default and shuts the drawer 900ms after the pointer leaves, which is surprising for a click-opened panel. The '<n> tucked away' tooltip is a bit cute. Tucked-widget tooltips are forwarded to the host bar, which will not draw them on the drawer window.",
+    "implementation": 3,
+    "implementation_why": "A layer-shell PanelWindow spans the bar strip with a mask so tucked popouts open beyond it, which is clever. The NestedBar proxy uses begin/endNestedPopout around host.requestPopout to keep the drawer open, a timing-sensitive hack. The catalogue scan via bash find/cat with record separators works. Re-requesting the popout slot via Qt.callLater when it empties is fiddly. The manifest schema omits items.",
+    "execution": 4,
+    "execution_why": "The button, the panel of tucked widgets and the items setting in shell.json with inline settings are all present. It adds unrequested auto-close behaviour, and items cannot be edited through the settings schema."
+   },
+   "D": {
+    "taste": 4,
+    "taste_why": "Looks at home. Material chevrons point toward the drawer and rotate 180\u00b0 when open, the card uses the bar background with the popups border, and tucked widgets get the bar's accent open-panel mark and proper tooltips. Escape and outside-click close it. Middle-click also toggles, and keyboard focus is taken exclusively at first, both minor surprises. Defaults are minimal.",
+    "implementation": 3,
+    "implementation_why": "Getting the widget registry through a plugin Service via bar.shell.serviceFor is the most legitimate route, and DrawerBar.qml scopes a facade for hosted widgets. There is a lot of machinery, though: a polling service lookup timer, a 5s warning timer per slot, and full-screen dismiss PanelWindows on every monitor via Variants. It also has its own popout coordinator, a write-back of hosted settings into items, and a focus-prime timer. Fully withholding serviceFor limits widgets. Correct but heavy.",
+    "execution": 4,
+    "execution_why": "Items in shell.json with inline settings, a working button and panel, and an IPC togglePanel for hotkeys are all delivered. Widgets still in bar.layout are silently dropped from the drawer. The manifest schema has no items field, and allowMultiple is false, so only one drawer is possible."
+   }
+  },
+  "ranking": [
+   "A",
+   "D",
+   "C",
+   "B"
+  ],
+  "ranking_why": "A is a self-contained bar widget that does everything asked, with a fitting look and only modest reliance on internals. D is similarly complete with good polish, but carries far more machinery and a few surprises. C works but defaults to auto-close and loses tucked-widget tooltips. B forces a whole-bar replacement that couples to stock Bar.qml internals and can rewrite shell.json, which is invasive for a simple drawer."
+ },
+ "usage": {
+  "input_tokens": 44615,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 2899,
+  "output_tokens_details": {
+   "thinking_tokens": 970
+  },
+  "service_tier": "standard",
+  "inference_geo": "global",
+  "speed": "standard"
+ },
+ "usd": 0.23644
+}

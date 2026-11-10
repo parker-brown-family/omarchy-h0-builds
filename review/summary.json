@@ -1,0 +1,446 @@
+{
+ "disk-free": {
+  "claude-code": {
+   "taste": [
+    3,
+    2
+   ],
+   "implementation": [
+    3,
+    2
+   ],
+   "execution": [
+    4,
+    3
+   ],
+   "rank": [
+    3,
+    4
+   ]
+  },
+  "h0-fitted": {
+   "taste": [
+    3,
+    3
+   ],
+   "implementation": [
+    4,
+    3
+   ],
+   "execution": [
+    4,
+    5
+   ],
+   "rank": [
+    2,
+    2
+   ]
+  },
+  "h0-plain": {
+   "taste": [
+    4,
+    4
+   ],
+   "implementation": [
+    4,
+    4
+   ],
+   "execution": [
+    4,
+    5
+   ],
+   "rank": [
+    1,
+    1
+   ]
+  },
+  "opencode": {
+   "taste": [
+    2,
+    2
+   ],
+   "implementation": [
+    3,
+    3
+   ],
+   "execution": [
+    3,
+    3
+   ],
+   "rank": [
+    4,
+    3
+   ]
+  }
+ },
+ "screen-sleep": {
+  "claude-code": {
+   "taste": [
+    4,
+    4
+   ],
+   "implementation": [
+    4,
+    4
+   ],
+   "execution": [
+    5,
+    5
+   ],
+   "rank": [
+    1,
+    1
+   ]
+  },
+  "h0-fitted": {
+   "taste": [
+    3,
+    3
+   ],
+   "implementation": [
+    3,
+    2
+   ],
+   "execution": [
+    4,
+    2
+   ],
+   "rank": [
+    3,
+    4
+   ]
+  },
+  "opencode": {
+   "taste": [
+    3,
+    3
+   ],
+   "implementation": [
+    2,
+    3
+   ],
+   "execution": [
+    4,
+    4
+   ],
+   "rank": [
+    4,
+    2
+   ]
+  },
+  "h0-plain": {
+   "taste": [
+    3,
+    3
+   ],
+   "implementation": [
+    3,
+    2
+   ],
+   "execution": [
+    5,
+    4
+   ],
+   "rank": [
+    2,
+    3
+   ]
+  }
+ },
+ "opacity": {
+  "claude-code": {
+   "taste": [
+    4,
+    3
+   ],
+   "implementation": [
+    4,
+    4
+   ],
+   "execution": [
+    5,
+    4
+   ],
+   "rank": [
+    1,
+    2
+   ]
+  },
+  "h0-fitted": {
+   "taste": [
+    3,
+    3
+   ],
+   "implementation": [
+    3,
+    3
+   ],
+   "execution": [
+    4,
+    4
+   ],
+   "rank": [
+    3,
+    3
+   ]
+  },
+  "opencode": {
+   "taste": [
+    4,
+    4
+   ],
+   "implementation": [
+    4,
+    4
+   ],
+   "execution": [
+    5,
+    5
+   ],
+   "rank": [
+    2,
+    1
+   ]
+  },
+  "h0-plain": {
+   "taste": [
+    3,
+    3
+   ],
+   "implementation": [
+    2,
+    2
+   ],
+   "execution": [
+    2,
+    2
+   ],
+   "rank": [
+    4,
+    4
+   ]
+  }
+ },
+ "drawer": {
+  "claude-code": {
+   "taste": [
+    4,
+    4
+   ],
+   "implementation": [
+    4,
+    4
+   ],
+   "execution": [
+    5,
+    4
+   ],
+   "rank": [
+    1,
+    1
+   ]
+  },
+  "h0-plain": {
+   "taste": [
+    2,
+    2
+   ],
+   "implementation": [
+    2,
+    2
+   ],
+   "execution": [
+    3,
+    3
+   ],
+   "rank": [
+    4,
+    4
+   ]
+  },
+  "h0-fitted": {
+   "taste": [
+    3,
+    3
+   ],
+   "implementation": [
+    3,
+    3
+   ],
+   "execution": [
+    4,
+    4
+   ],
+   "rank": [
+    3,
+    3
+   ]
+  },
+  "opencode": {
+   "taste": [
+    4,
+    4
+   ],
+   "implementation": [
+    3,
+    3
+   ],
+   "execution": [
+    4,
+    4
+   ],
+   "rank": [
+    2,
+    2
+   ]
+  }
+ },
+ "harbour-fog": {
+  "h0-fitted": {
+   "taste": [
+    4,
+    5
+   ],
+   "implementation": [
+    4,
+    4
+   ],
+   "execution": [
+    5,
+    5
+   ],
+   "rank": [
+    2,
+    1
+   ]
+  },
+  "h0-plain": {
+   "taste": [
+    3,
+    2
+   ],
+   "implementation": [
+    4,
+    3
+   ],
+   "execution": [
+    4,
+    4
+   ],
+   "rank": [
+    4,
+    4
+   ]
+  },
+  "opencode": {
+   "taste": [
+    4,
+    4
+   ],
+   "implementation": [
+    4,
+    4
+   ],
+   "execution": [
+    5,
+    5
+   ],
+   "rank": [
+    1,
+    2
+   ]
+  },
+  "claude-code": {
+   "taste": [
+    3,
+    4
+   ],
+   "implementation": [
+    3,
+    3
+   ],
+   "execution": [
+    4,
+    4
+   ],
+   "rank": [
+    3,
+    3
+   ]
+  }
+ },
+ "paper-lantern": {
+  "h0-fitted": {
+   "taste": [
+    4,
+    4
+   ],
+   "implementation": [
+    4,
+    4
+   ],
+   "execution": [
+    5,
+    4
+   ],
+   "rank": [
+    1,
+    2
+   ]
+  },
+  "opencode": {
+   "taste": [
+    4,
+    4
+   ],
+   "implementation": [
+    3,
+    4
+   ],
+   "execution": [
+    5,
+    5
+   ],
+   "rank": [
+    2,
+    1
+   ]
+  },
+  "h0-plain": {
+   "taste": [
+    3,
+    4
+   ],
+   "implementation": [
+    3,
+    4
+   ],
+   "execution": [
+    4,
+    4
+   ],
+   "rank": [
+    3,
+    3
+   ]
+  },
+  "claude-code": {
+   "taste": [
+    2,
+    3
+   ],
+   "implementation": [
+    3,
+    3
+   ],
+   "execution": [
+    4,
+    4
+   ],
+   "rank": [
+    4,
+    4
+   ]
+  }
+ }
+}

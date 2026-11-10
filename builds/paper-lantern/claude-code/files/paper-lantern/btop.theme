@@ -1,0 +1,57 @@
+# Paper Lantern — ink on warm paper, lit by a red lantern
+
+theme[main_bg]="#f4eedf"
+theme[main_fg]="#1c1a17"
+theme[title]="#1c1a17"
+theme[hi_fg]="#b8321f"
+theme[selected_bg]="#ead2c3"
+theme[selected_fg]="#8e2414"
+theme[inactive_fg]="#a59a86"
+theme[graph_text]="#3d3832"
+theme[meter_bg]="#e0d6bf"
+theme[proc_misc]="#3d3832"
+
+# Box outlines: ink, with the processes box lit red
+theme[cpu_box]="#3d3832"
+theme[mem_box]="#3d3832"
+theme[net_box]="#3d3832"
+theme[proc_box]="#b8321f"
+theme[div_line]="#c9bea8"
+
+# Temperature: cool ink -> amber -> lantern red
+theme[temp_start]="#5c7628"
+theme[temp_mid]="#c0561a"
+theme[temp_end]="#b8321f"
+
+# CPU: warm ember ramp
+theme[cpu_start]="#d9a066"
+theme[cpu_mid]="#c0561a"
+theme[cpu_end]="#b8321f"
+
+theme[free_start]="#8a8172"
+theme[free_mid]="#5c7628"
+theme[free_end]="#2b7469"
+
+theme[cached_start]="#2f5788"
+theme[cached_mid]="#2b7469"
+theme[cached_end]="#5c7628"
+
+theme[available_start]="#9a6f0e"
+theme[available_mid]="#c0561a"
+theme[available_end]="#b8321f"
+
+theme[used_start]="#d9a066"
+theme[used_mid]="#c0561a"
+theme[used_end]="#b8321f"
+
+theme[download_start]="#2b7469"
+theme[download_mid]="#2f5788"
+theme[download_end]="#1c1a17"
+
+theme[upload_start]="#d9a066"
+theme[upload_mid]="#c0561a"
+theme[upload_end]="#b8321f"
+
+theme[process_start]="#8a8172"
+theme[process_mid]="#c0561a"
+theme[process_end]="#b8321f"

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "parker.bar-drawer",
+  "name": "Bar drawer",
+  "version": "1.0.0",
+  "author": "parker",
+  "description": "A drawer button that opens a panel holding the bar widgets you tucked away",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Drawer.qml"
+  },
+  "barWidget": {
+    "displayName": "Bar drawer",
+    "description": "Click to open a panel holding the widgets listed in this entry's \"items\"",
+    "category": "Layout",
+    "allowMultiple": true,
+    "defaultSection": "right",
+    "defaults": {
+      "items": [],
+      "autoClose": true,
+      "autoCloseDelay": 900
+    },
+    "schema": [
+      { "key": "icon", "type": "string", "label": "Button icon", "defaultValue": "", "description": "Optional glyph. Empty uses a chevron that points toward the drawer." },
+      { "key": "autoClose", "type": "boolean", "label": "Close when the pointer leaves", "defaultValue": true },
+      { "key": "autoCloseDelay", "type": "integer", "label": "Auto-close delay (ms)", "min": 200, "max": 10000, "step": 100, "defaultValue": 900 }
+    ]
+  }
+}

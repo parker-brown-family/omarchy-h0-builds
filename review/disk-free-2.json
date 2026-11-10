@@ -1,0 +1,70 @@
+{
+ "subject": "disk-free",
+ "pass": 2,
+ "letters": {
+  "h0-plain": "A",
+  "h0-fitted": "B",
+  "opencode": "C",
+  "claude-code": "D"
+ },
+ "verdict": {
+  "builds": {
+   "A": {
+    "taste": 4,
+    "taste_why": "Shows a plain \"182G free\" in caption font with tight 6px margins. Text is dropped in vertical bars. It reddens through the theme's `active` state rather than a hard-coded colour, and the tooltip gives \"free of\" total plus percent. Click only refreshes, so nothing surprising happens. The widget stays hidden (`visible: hasData`) until the first reading, so no empty pill appears.",
+    "implementation": 4,
+    "implementation_why": "Calls `df -P -B1 -- path` with `--` guarding odd paths. Parsing checks column count, `isFinite` and size > 0. Settings use `|| fallback` against NaN, and the interval is clamped to 10s or more. `refresh()` guards against re-entry, and a `onMountPathChanged` re-run is included. The manifest schema uses a `path` type with min/max/step. Clean, with no dead code.",
+    "execution": 5,
+    "execution_why": "Covers every part of the request: free space on `/` as \"182G free\", a 60s Timer with `triggeredOnStart`, and red below 10% free. The extras are small, relevant settings, and nothing unwanted is added."
+   },
+   "B": {
+    "taste": 3,
+    "taste_why": "The label and tooltip are good, and click-to-refresh is sensible. It uses the default font size rather than the caption size the other bar widgets here use. It is never hidden, so before the first df result an empty WidgetButton can sit in the bar.",
+    "implementation": 3,
+    "implementation_why": "Uses `df -B1 --output=avail,size` with a NaN check, and the generic humanSize loop is fine. `warnPercent` has no NaN fallback. The manifest schema is bare: no defaultValue, min, max, or integer types. `import Quickshell` is unused. Otherwise correct and readable.",
+    "execution": 5,
+    "execution_why": "Does all three things asked: \"N free\" for `/`, a refresh every 60s, and red via `active` under 10%. No unwanted additions."
+   },
+   "C": {
+    "taste": 2,
+    "taste_why": "The look is right: caption font, hidden until data, \"182G free\". But left-click launches btop and refresh is moved to middle-click. That is an unrequested, surprising behaviour for a disk readout, and btop is not even a disk tool. `formatSize` floors to whole GiB, so a nearly full drive reads \"0G free\".",
+    "implementation": 3,
+    "implementation_why": "Parsing is solid, with `isFinite` and size > 0 checks, and the schema has proper ranges. `intervalSec` lacks a NaN fallback, so bad input gives a NaN interval. Some code exists only to support the btop-launch extra.",
+    "execution": 3,
+    "execution_why": "The core request is met: free space, 60s refresh, red below 10%. The unwanted btop launch on left-click counts against it."
+   },
+   "D": {
+    "taste": 2,
+    "taste_why": "Mirrors `df -h` rounding, which is a nice touch, and it hides until data arrives. However, every click both refreshes and opens btop. That is an unrequested app launch on any press, with no way to refresh without spawning a terminal.",
+    "implementation": 2,
+    "implementation_why": "`Number(fields[0])` is assigned with no NaN or finite check. `interval` and `lowPercent` have no NaN fallback, so `Math.max(5, NaN)` yields NaN. The schema is untyped with no ranges. `import Quickshell` is unused. Rounding up can overstate free space.",
+    "execution": 3,
+    "execution_why": "Delivers the readout, the minute refresh and the red threshold. It adds an unwanted btop launch on every click."
+   }
+  },
+  "ranking": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "ranking_why": "A is the most careful and complete, with no unwanted extras. B is correct and restrained but less polished: an empty pill before the first reading and a loose schema. C and D both bolt on a btop launch nobody asked for. D is worst because it fires btop on every click and has the weakest input validation."
+ },
+ "usage": {
+  "input_tokens": 6705,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 1702,
+  "output_tokens_details": {
+   "thinking_tokens": 341
+  },
+  "service_tier": "standard",
+  "inference_geo": "global",
+  "speed": "standard"
+ },
+ "usd": 0.06086
+}

@@ -1,0 +1,32 @@
+mode = "light"
+
+# Paper Lantern — warm paper, ink-black text, red lantern accent
+accent = "#C0392B"
+selection = "#E8D9BC"
+muted = "#A69C89"
+
+background = "#F4EEDF"
+dark_background = "#EBE3D0"
+darker_background = "#E0D6C0"
+lighter_background = "#E6DDC8"
+
+foreground = "#1E1B17"
+dark_foreground = "#7A7163"
+light_foreground = "#3A352E"
+bright_foreground = "#110F0D"
+
+red = "#B83227"
+yellow = "#A0740E"
+orange = "#BF5B1D"
+green = "#5A7329"
+cyan = "#2B7570"
+blue = "#2E5785"
+magenta = "#963C68"
+brown = "#6B4423"
+
+bright_red = "#D2443A"
+bright_yellow = "#BA8A1C"
+bright_green = "#6E8A36"
+bright_cyan = "#378C86"
+bright_blue = "#3E6CA0"
+bright_magenta = "#B04F82"

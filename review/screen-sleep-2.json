@@ -1,0 +1,70 @@
+{
+ "subject": "screen-sleep",
+ "pass": 2,
+ "letters": {
+  "opencode": "A",
+  "h0-plain": "B",
+  "claude-code": "C",
+  "h0-fitted": "D"
+ },
+ "verdict": {
+  "builds": {
+   "A": {
+    "taste": 3,
+    "taste_why": "It is a quiet headless service with no bar clutter. It honours Omarchy's stay-awake marker and idle inhibitors. It skips a redundant DPMS enable to avoid a modeset flicker, which is a thoughtful touch. The lastEvent timestamp string is mild extra noise.",
+    "implementation": 3,
+    "implementation_why": "It is simple, but it routes every command through `bash -c` strings and adds a `jq` dependency just to check `dpmsStatus`. The stay-awake check sets `screensOff=true` even when it skipped turning the displays off. It reads the stay-awake file only at the moment of idle. It has no `Component.onDestruction` restore, so reloading the plugin while dark leaves the screens off with nothing to wake them.",
+    "execution": 4,
+    "execution_why": "An IdleMonitor with a 600s timeout runs DPMS disable, and input runs DPMS enable. Only `hyprctl` DPMS is ever called, so it never suspends. All parts of the request are met."
+   },
+   "B": {
+    "taste": 3,
+    "taste_why": "It behaves well: headless, honours stay-awake live and respects inhibitors. But the plugin carries a separate `ScreenSleepModel.js` 'for unit testing with test.mjs', and that test is not shipped. This is heavy for a two-command job.",
+    "implementation": 2,
+    "implementation_why": "There is needless machinery: a JS model, a pendingAction queue, a mkdir/test/FileView chain. It runs `mkdir -p`, which writes to the user's state directory as a side effect. It points FileView at a directory with `watchChanges`, which may not fire. It references a non-existent test.mjs. On the plus side, it uses direct argv instead of a shell and restores the screens on destruction.",
+    "execution": 4,
+    "execution_why": "It meets the 10-minute DPMS off, the on-input wake and the never-suspend requirement. Stay-awake toggling wakes the screens immediately."
+   },
+   "C": {
+    "taste": 4,
+    "taste_why": "It is minimal and restrained: a headless service with no UI noise. It disables the IdleMonitor while Omarchy's Stay Awake is on and lights the screens when that toggle flips. It never leaves the displays dark on reload. This is the behaviour a user would expect.",
+    "implementation": 4,
+    "implementation_why": "It is compact and idiomatic: `Quickshell.execDetached` with argv, an idempotent `setScreens`, and an `onDestruction` re-enable. The weak spots are minor. It spawns `test -e` every 5s where a FileView would be lighter. The `keepLoaded` manifest field is of unclear necessity.",
+    "execution": 5,
+    "execution_why": "DPMS goes off after 600s idle and comes back on at the next input. Only the `hyprctl` DPMS dispatcher runs, so it never suspends. The request is fully satisfied."
+   },
+   "D": {
+    "taste": 3,
+    "taste_why": "It is headless and quiet, honours stay-awake and inhibitors, and has a clear comment about Hyprland's key_press_enables_dpms.",
+    "implementation": 2,
+    "implementation_why": "It depends on `omarchy-brightness-display off/on`, a brightness helper whose on/off semantics are assumed rather than verified. If that helper does not accept them, the screens never blank. `run()` silently drops a command while a process is still running, so off/on transitions can be lost. It uses `bash -c` strings and has no destruction restore.",
+    "execution": 2,
+    "execution_why": "Turning the screens off hinges on an unverified script argument, so the core requirement may silently fail. The never-suspend part does hold."
+   }
+  },
+  "ranking": [
+   "C",
+   "A",
+   "B",
+   "D"
+  ],
+  "ranking_why": "C is the simplest correct build: direct DPMS calls, live stay-awake handling and a destruction restore. A is straightforward and correct but lacks the reload restore and leans on bash and jq. B works but is over-built, with an untested JS model, a mkdir side effect and a dubious directory FileView. D rests on an unverified brightness script for the core off/on action."
+ },
+ "usage": {
+  "input_tokens": 6407,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 2160,
+  "output_tokens_details": {
+   "thinking_tokens": 762
+  },
+  "service_tier": "standard",
+  "inference_geo": "global",
+  "speed": "standard"
+ },
+ "usd": 0.068828
+}

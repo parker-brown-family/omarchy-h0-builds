@@ -1,0 +1,70 @@
+{
+ "subject": "screen-sleep",
+ "pass": 1,
+ "letters": {
+  "claude-code": "A",
+  "h0-fitted": "B",
+  "opencode": "C",
+  "h0-plain": "D"
+ },
+ "verdict": {
+  "builds": {
+   "A": {
+    "taste": 4,
+    "taste_why": "A quiet, headless service with a fixed 600s timeout and no bar clutter. It honours Omarchy's own stay-awake indicator file and Wayland idle inhibitors, so it behaves the way the stock idle handling does. Turning Stay Awake on while the screens are dark wakes them (onStayAwakeChanged). It logs only on actual transitions.",
+    "implementation": 4,
+    "implementation_why": "Simple and idiomatic: an IdleMonitor driving a single setScreens() guard, with execDetached argv and no shell string. Component.onDestruction re-enables DPMS so a reload never leaves the screens dark. IdleMonitor.enabled is tied to stayAwake. The one weak point is polling `test -e` with a Process every 5s, which is cheap but less elegant than a watch. keepLoaded is a reasonable choice for a background service.",
+    "execution": 5,
+    "execution_why": "Every part of the request is met. Displays go off after 10 minutes, any input brings them back via the IdleMonitor isIdle change, and the only command it ever runs is the hyprctl DPMS dispatch, so it never suspends."
+   },
+   "B": {
+    "taste": 3,
+    "taste_why": "It reuses Omarchy's own omarchy-brightness-display script, which fits the platform. However, stay-awake is checked only inside the off command. The plugin still sets screensOff=true and logs 'turning displays off' when nothing actually happened, so its status output is misleading.",
+    "implementation": 3,
+    "implementation_why": "Short and readable, but it routes everything through bash -c string building. run() silently drops a command if the previous one is still running, so an 'on' arriving during a slow 'off' is lost. The comment openly admits it relies on Hyprland's key_press_enables_dpms as the real wake path. There is no onDestruction restore, so disabling the plugin while the screens are dark leaves them off.",
+    "execution": 4,
+    "execution_why": "It blanks after 10 minutes, wakes on input and never suspends. The edge cases are weaker: there is no wake when Stay Awake is toggled on, the internal state can disagree with reality, and nothing restores the screens on unload."
+   },
+   "C": {
+    "taste": 3,
+    "taste_why": "Headless and restrained, and the flicker-avoidance check before re-enabling is a thoughtful detail. The lastEvent timestamp tracking and the extra IPC field are minor additions nobody asked for. Like B, stay-awake is checked only at the moment of going off.",
+    "implementation": 2,
+    "implementation_why": "Commands are built as bash -c strings with nested quoting. The wake path depends on jq and a jq expression over `hyprctl monitors -j`. run() kills an in-flight process (`process.running = false`), which can abort a DPMS command midway. There is no onDestruction restore. screensOff is set true even when stay-awake skips the off command.",
+    "execution": 4,
+    "execution_why": "The core behaviour works: DPMS off at 600s idle, enable on input, and no suspend path. It has the same stay-awake and unload gaps as B, and the wake path adds an extra failure point if jq is missing."
+   },
+   "D": {
+    "taste": 3,
+    "taste_why": "Behaviour is sensible: it respects stay-awake and inhibitors, wakes immediately when stay-awake is toggled, and restores the screens on unload. The cost is heavy machinery for a 10-minute DPMS toggle. It also has a side effect of creating ~/.local/state/omarchy/indicators with mkdir -p.",
+    "implementation": 3,
+    "implementation_why": "The argv is correct and executed without a shell, there is a pending-action queue so commands never overlap, and onDestruction is handled. But the split into ScreenSleepModel.js with a nextAction() state machine is needless for this job. Its header references a test.mjs that isn't shipped. FileView on a directory as a change watcher is fragile, and the chain mkdir, then probe, then FileView.reload is convoluted. The manifest property is declared but unused.",
+    "execution": 5,
+    "execution_why": "Everything asked for is delivered: off after 600s, on at input, DPMS-only commands with no suspend. It also handles the stay-awake toggle and plugin reload correctly."
+   }
+  },
+  "ranking": [
+   "A",
+   "D",
+   "B",
+   "C"
+  ],
+  "ranking_why": "A does the whole job with the least code. It uses DPMS-only argv, honours stay-awake and inhibitors, and restores the screens on unload. D matches A's behaviour but buries it in an over-built JS model, a directory watcher and a mkdir side effect. B is lean and uses Omarchy's script, but it can drop wake commands, misreports state when stay-awake is on, and has no unload restore. C has the same gaps as B and adds a jq dependency plus process-killing in run()."
+ },
+ "usage": {
+  "input_tokens": 6407,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 2177,
+  "output_tokens_details": {
+   "thinking_tokens": 554
+  },
+  "service_tier": "standard",
+  "inference_geo": "global",
+  "speed": "standard"
+ },
+ "usd": 0.069168
+}
